@@ -22,3 +22,6 @@ Similar Games:
 	
 Group Members:
 Alper Kağan Kayalı   Salih Zeki Okur   Kasymbek Tashbaev   Büşra Oğuzoğlu 	
+
+Link to Meetings Document:
+https://docs.google.com/document/d/1kRfyHbda1TB733j7XRN788dAEyhIVoax3m9ikybDVQI/edit?usp=sharing
