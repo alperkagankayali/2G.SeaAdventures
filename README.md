@@ -14,7 +14,8 @@ Controllers are WASD for Player 1 and UP-DOWN-LEFT-RIGHT for Player 2. In additi
 
 The gameplay: The main hero which is a submarine has health and energy. If health goes to zero, submarine is destroyed and the game ends. In addition, there will be different enemies with different skills and atacks. At the same time, submarine will also have different skills which have a cooldown and require some energy. The energy can be filled collecting the shiny objects on the map.
 
-There will be three levels. Each level has small bosses while the third level will have the final boss. The submarine will gain experience while killing the enemies in order to level up and get better weapons.     
+Leveling of submarine and map will be independent. There will be three different maps in the game. At the end of each map, there will be bosses. In order to proceed to the next level in game, player needs to beat the boss at the end of the map. At the third level, there will be final boss that is more powerful compared to first two bosses, and in order to beat the game, player should defeat the final boss.
+In order to get power up's and stronger submarine, player should defeat enemies and get points.
 
 Similar Games:
 	Space Shooters: http://playzool.com/games/spaceShooter/?o=portrait
