@@ -135,4 +135,8 @@ public class BigEnemy extends Enemy{
             setVelocity(getXVelocity(), -getYVelocity());
     }
 
+    @Override
+    public void disappearAnimation() throws FileNotFoundException {
+        super.disappearAnimation();
+    }
 }
