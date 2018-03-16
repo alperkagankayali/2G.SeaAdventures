@@ -27,7 +27,8 @@ public class PowerUp extends GameObject {
     }
 
     // ID constructor
-    public PowerUp( double xPos, double yPos, int ID, int mapLvl) throws FileNotFoundException {
+    public PowerUp( double xPos, double yPos, int ID, int mapLvl, boolean visible) throws FileNotFoundException {
+        setVisible( visible);
         setID( ID);
         setLocation( xPos, yPos);
         setScore( 100);
