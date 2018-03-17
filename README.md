@@ -10,11 +10,7 @@ It’s a multiplayer game. Therefore, two players can play it together.
 
 The map is basically bottom of the ocean, while there are islands which need to be avoided. In addition, the game will be horizontal, unlike Space Shooters. 
 
-<<<<<<< HEAD
-Controllers are WASD for Player 1 and UP-DOWN-LEFT-RIGHT for Player 2. In addition, Player 1 shoots with spacebar while player 2 shoots with “.” button.
-=======
 Controllers are WASD for Player 1. In addition, Player 1 shoots with spacebar.
->>>>>>> unstable
 
 The gameplay: The main hero which is a submarine has health and energy. If health goes to zero, submarine is destroyed and the game ends. In addition, there will be different enemies with different skills and atacks. At the same time, submarine will also have different skills which have a cooldown and require some energy. The energy can be filled collecting the shiny objects on the map.
 
@@ -29,7 +25,4 @@ Alper Kağan Kayalı   Salih Zeki Okur   Kasymbek Tashbaev   Büşra Oğuzoğlu
 
 Link to Meetings Document:
 https://docs.google.com/document/d/1kRfyHbda1TB733j7XRN788dAEyhIVoax3m9ikybDVQI/edit?usp=sharing
-<<<<<<< HEAD
-=======
 
->>>>>>> unstable
