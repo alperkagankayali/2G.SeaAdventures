@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 public class BossManager extends BigEnemy {
 
-    private final String KRAKEN_IMAGE = "C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\boss_kraken.png";
+    private final String KRAKEN_IMAGE = "C:\\Users\\Alper\\IdeaProjects\\draftproject\\src\\sample\\boss_kraken.png";
 
     private double abilityCooldown;
     private double currentCooldown;
@@ -37,6 +37,7 @@ public class BossManager extends BigEnemy {
         setAbilityCooldown( 15 - 3 * mapLvl);
         setQuantityOfEffect( 20 + 5 * mapLvl);
         setVisible(visibility);
+        setType("Boss");
     }
 
     public double getAbilityCooldown() {

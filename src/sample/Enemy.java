@@ -7,15 +7,15 @@ import java.io.FileNotFoundException;
 
 public class Enemy extends GameObject{
 
-    private final String DEATH_IMAGE = "C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\explosion.png";
+    private final String DEATH_IMAGE = "C:\\Users\\Alper\\IdeaProjects\\draftproject\\src\\sample\\explosion.png";
 
     private int health;
     private int collisionDmg;
     private int experiencePrize;
     private int scorePrize;
 
-    Enemy(Image image, double xPos, double  yPos, double xVelocity, double yVelocity, int health, int collisionDmg, int xp, int score, boolean visible){
-        super( image, xPos, yPos, xVelocity, yVelocity, visible );
+    Enemy(Image image, double xPos, double  yPos, double xVelocity, double yVelocity, int health, int collisionDmg, int xp, int score, boolean visible, String type){
+        super( image, xPos, yPos, xVelocity, yVelocity, visible, type );
         setHealth( health);
         setCollisionDmg( collisionDmg);
         setExperiencePrize( xp);
@@ -33,15 +33,20 @@ public class Enemy extends GameObject{
     @Override
     public void update(double time) throws FileNotFoundException {
         super.update(time);
-        if( health <= 0)
+        if( health <= 0 || getYPos() <= 0 || getXPos() <= 0){
             disappearAnimation();
+        }
     }
 
     @Override
     public void disappearAnimation() throws FileNotFoundException {
-        Image death_image = new Image(new FileInputStream(DEATH_IMAGE));
-        setSpriteImage(death_image);
-        setVelocity(0, 0);
+        try{
+            Image death_image = new Image(new FileInputStream(DEATH_IMAGE));
+            setSpriteImage(death_image);
+            setVelocity(0, 0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public int getScorePrize() {

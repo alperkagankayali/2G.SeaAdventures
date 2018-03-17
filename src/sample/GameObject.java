@@ -14,16 +14,18 @@ public class GameObject {
     private double xVelocity;
     private double yVelocity;
     private boolean visible;
+    private String type;
 
 /*Creating an object
     Image image = new Image(new FileInputStream("C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\Enemy_Crab.png"));
     GameObject crab = new GameObject( image,300, 300, -50, 0 );
     */
-    GameObject(Image image, double xPos, double  yPos, double xVelocity, double yVelocity, boolean visible){
+    GameObject(Image image, double xPos, double  yPos, double xVelocity, double yVelocity, boolean visible, String type){
         setLocation( xPos, yPos);
         setVelocity( xVelocity, yVelocity);
         setSpriteImage(image);
         setVisible( visible);
+        this.type = type;
     }
 
     // default constructor
@@ -47,7 +49,12 @@ public class GameObject {
     public Image getSpriteImage( ){
         return spriteImage;
     }
-    public void setSpriteImage( Image image){
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSpriteImage(Image image){
             spriteImage = image;
      }
     public void disappearAnimation() throws FileNotFoundException {
@@ -100,5 +107,7 @@ public class GameObject {
         else
             xPos += time * -50;
     }
-
+    public String toString(){
+        return type;
+    }
 }

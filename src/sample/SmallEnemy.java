@@ -7,12 +7,12 @@ import java.io.FileNotFoundException;
 
 public class SmallEnemy extends Enemy {
 
-    private final String HCRAB_IMAGE = "C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\Enemy_Crab.png";
-    private final String ACRAB_IMAGE = "C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\Enemy_Crab2.png";
-    private final String MINE_IMAGE = "C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\enemy_mine.png";
+    private final String HCRAB_IMAGE = "C:\\Users\\Alper\\IdeaProjects\\draftproject\\src\\sample\\Enemy_Crab.png";
+    private final String ACRAB_IMAGE = "C:\\Users\\Alper\\IdeaProjects\\draftproject\\src\\sample\\Enemy_Crab2.png";
+    private final String MINE_IMAGE = "C:\\Users\\Alper\\IdeaProjects\\draftproject\\src\\sample\\enemy_mine.png";
 
     SmallEnemy(Image image, double xPos, double  yPos, double xVelocity, double yVelocity, int health, int collisionDmg, int xp, int score, boolean visible){
-        super(image, xPos, yPos, xVelocity, yVelocity, health, collisionDmg, xp, score, visible);
+        super(image, xPos, yPos, xVelocity, yVelocity, health, collisionDmg, xp, score, visible, "Small Enemy");
     }
 
 
@@ -49,6 +49,7 @@ public class SmallEnemy extends Enemy {
             setExperiencePrize(20 + 20 * mapLvl);
             setScorePrize( 20 + 20 * mapLvl);
         }
+        setType("Small Enemy");
     }
 
 
