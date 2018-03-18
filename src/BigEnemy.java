@@ -112,7 +112,7 @@ public class BigEnemy extends Enemy{
         others = y positions of bullets
      */
     public double[] shoot(){
-        if( shootCooldown <= 0) {
+        if( shootCooldown <= 0 && isVisible()) {
             double[] arr = new double[amountOfProjectile + 2];
             arr[0] = attackDamage;
             arr[1] = getXPos();
@@ -131,7 +131,7 @@ public class BigEnemy extends Enemy{
         super.update(time);
         if( shootCooldown > 0)
             shootCooldown = shootCooldown - time;
-        if( (getYPos() > 430 - getHeight()) || (getYPos() <= 10))
+        if( ( (getYPos() > 480 - getHeight()) && getYVelocity() > 0) || (getYPos() < 10 && getYVelocity() < 0))
             setVelocity(getXVelocity(), -getYVelocity());
     }
 

@@ -80,7 +80,7 @@ public class PowerUp extends GameObject {
     @Override
     public void update(double time) throws FileNotFoundException {
         super.update(time);
-        if( (getYPos() > 480 - getHeight()) || (getYPos() < 25))
+        if( ( (getYPos() > 480 - getHeight()) && getYVelocity() > 0) || (getYPos() < 10 && getYVelocity() < 0))
             setVelocity(getXVelocity(), -getYVelocity());
     }
 }

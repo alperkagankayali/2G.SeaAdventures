@@ -91,14 +91,15 @@ public class GameObject {
     }
 
     public void update(double time) throws FileNotFoundException {
-        if( xPos <= 850)
+        if( xPos <= 850 - getWidth())
             setVisible( true);
         if(isVisible()) {
             xPos += time * xVelocity;
             yPos += time * yVelocity;
         }
-        else
+        else {
             xPos += time * -50;
+        }
     }
 
 }
