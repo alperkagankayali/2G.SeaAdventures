@@ -5,3 +5,7 @@ v 0.2
 3. Added new Boss images
 4. Added new BigEnemy images
 5. Improved/Changed constructors of all game objects: boolean visible removed from parameters
+
+v 0.3
+1. Energy and Health classes added (will be implemented)
+2. ObjectRandomLocation: Location class is rewritten instead of using Java.Location
