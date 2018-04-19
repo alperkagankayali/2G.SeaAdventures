@@ -1,0 +1,7 @@
+v 0.2
+*. "sample" package renamed to "GameEntities"
+1. All game objects have directory of image: System.getProperty("user.dir") + "images\\name.png"
+2. Bug with vertical motion of BigEnemy fixed
+3. Added new Boss images
+4. Added new BigEnemy images
+5. Improved/Changed constructors of all game objects: boolean visible removed from parameters
