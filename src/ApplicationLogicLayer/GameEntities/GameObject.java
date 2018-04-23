@@ -18,6 +18,7 @@ public class GameObject {
     // constructor with positions
     GameObject( double xPos, double yPos){
         setLocation(xPos, yPos);
+        setVelocity(0, 0);
         if( xPos <= 750 && yPos <= 480 && xPos >= 0 && yPos >= 0) {
             setVisible();
         }

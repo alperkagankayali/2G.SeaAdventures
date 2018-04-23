@@ -15,7 +15,7 @@ public class Health {
     private GameObject object;
 
     public Health(int sLvl) throws FileNotFoundException {
-        object = new GameObject( 20, 10);
+        object = new GameObject( 5, 5);
         setSubLevel(sLvl);
         setMaxHealth(75 + 25 * subLevel);
         setHealthAmount(maxHealth);

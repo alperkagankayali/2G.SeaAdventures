@@ -37,8 +37,7 @@ public class Main extends Application {
 
         double lastNanoTime = System.nanoTime();
 
-        Health health = new Health(5);
-        Energy energy = new Energy(5);
+        Submarine sub = new Submarine(5);
 
         new AnimationTimer()
         {
@@ -54,13 +53,16 @@ public class Main extends Application {
                 gc.clearRect(0, 0, 850,480);
 
                 try {
-                    health.update( -1);
-                    energy.update(-1);
+                    sub.update( elapsedTime);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                health.draw(gc);
-                energy.draw(gc);
+                sub.draw(gc);
+                try {
+                    sub.healthDecrease(1);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }.start();
 

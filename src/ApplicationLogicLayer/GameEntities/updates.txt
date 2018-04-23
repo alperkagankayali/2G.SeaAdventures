@@ -12,4 +12,7 @@ v 0.3
 
 v 0.4
 1. images' directory bugs are fixed
-2. Health and Energy is implemented
+2. Health and Energy is implemented using Delegation pattern
+
+v 0.5
+1. Submarine is implemented

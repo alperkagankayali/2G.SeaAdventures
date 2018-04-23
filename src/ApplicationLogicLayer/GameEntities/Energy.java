@@ -15,7 +15,7 @@ public class Energy {
     private GameObject object;
 
     public Energy(int sLvl) throws FileNotFoundException {
-        object = new GameObject( 20, 40);
+        object = new GameObject( 5, 35);
         setSubLevel(sLvl);
         setMaxEnergy(75 + 25 * subLevel);
         setEnergyAmount(maxEnergy);
