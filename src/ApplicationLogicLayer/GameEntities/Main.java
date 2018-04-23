@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(final Stage stage) throws FileNotFoundException, InterruptedException {
+    public void start(final Stage stage) throws FileNotFoundException {
 
         //Creating a Group object
         Group root = new Group();

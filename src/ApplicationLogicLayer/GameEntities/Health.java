@@ -15,15 +15,15 @@ public class Health {
     private GameObject object;
 
     public Health(int sLvl) throws FileNotFoundException {
-        object = new GameObject( 20, 20);
+        object = new GameObject( 20, 10);
         setSubLevel(sLvl);
         setMaxHealth(75 + 25 * subLevel);
         setHealthAmount(maxHealth);
         IMAGES = new Image[imageSize];
         for(int i = 0; i < imageSize; i++ ){
-            IMAGES[i] = new Image(new FileInputStream(System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\health_" + i));
+            IMAGES[i] = new Image(new FileInputStream(System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\health_" + i + ".png"));
         }
-        object.setSpriteImage( IMAGES[ (healthAmount + maxHealth / (2 * imageSize) ) / (maxHealth / imageSize)]);
+        object.setSpriteImage( IMAGES[ (healthAmount + maxHealth / (2 * (imageSize - 1) ) ) / (maxHealth / (imageSize - 1) )]);
         update( 0);
     }
 
@@ -60,7 +60,7 @@ public class Health {
 
     public void update( int increaseAmount) throws FileNotFoundException {
         setHealthAmount( getHealthAmount() + increaseAmount);
-        object.setSpriteImage( IMAGES[ (healthAmount + maxHealth / (2 * imageSize) ) / (maxHealth / imageSize)]);
+        object.setSpriteImage( IMAGES[ (healthAmount + maxHealth / (2 * (imageSize - 1) ) ) / (maxHealth / (imageSize - 1) )]);
         object.update( 0);
     }
 

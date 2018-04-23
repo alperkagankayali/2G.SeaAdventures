@@ -15,15 +15,15 @@ public class Energy {
     private GameObject object;
 
     public Energy(int sLvl) throws FileNotFoundException {
-        object = new GameObject( 50, 20);
+        object = new GameObject( 20, 40);
         setSubLevel(sLvl);
         setMaxEnergy(75 + 25 * subLevel);
         setEnergyAmount(maxEnergy);
         IMAGES = new Image[imageSize];
         for(int i = 0; i < imageSize; i++ ){
-            IMAGES[i] = new Image(new FileInputStream(System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\energy_" + i));
+            IMAGES[i] = new Image(new FileInputStream(System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\energy_" + i + ".png"));
         }
-        object.setSpriteImage( IMAGES[ (energyAmount + maxEnergy / (2 * imageSize) ) / (maxEnergy / imageSize)]);
+        object.setSpriteImage( IMAGES[ (energyAmount + maxEnergy / (2 * (imageSize - 1) ) ) / (maxEnergy / (imageSize - 1) )]);
         update( 0);
     }
 
@@ -60,7 +60,7 @@ public class Energy {
 
     public void update( int increaseAmount) throws FileNotFoundException {
         setEnergyAmount( getEnergyAmount() + increaseAmount);
-        object.setSpriteImage( IMAGES[ (energyAmount + maxEnergy / (2 * imageSize) ) / (maxEnergy / imageSize)]);
+        object.setSpriteImage( IMAGES[ (energyAmount + maxEnergy / (2 * (imageSize - 1) ) ) / (maxEnergy / (imageSize - 1) )]);
         object.update( 0);
     }
 
