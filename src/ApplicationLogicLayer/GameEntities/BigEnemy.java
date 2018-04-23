@@ -1,15 +1,15 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class BigEnemy extends Enemy{
+public class BigEnemy extends ApplicationLogicLayer.GameEntities.Enemy {
 
-    private final String JELLY_IMAGE = System.getProperty("user.dir") + "images\\Enemy_Medusa.png";
-    private final String SEAHORSE_IMAGE = System.getProperty("user.dir") + "images\\enemy_seahorse.png";
-    private final String CORALL_IMAGE = System.getProperty("user.dir") + "images\\enemy_corall.png";
+    private final String JELLY_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Enemy_Medusa.png";
+    private final String SEAHORSE_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\enemy_seahorse.png";
+    private final String CORALL_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\enemy_corall.png";
 
     private double attackSpeed;
     private double shootCooldown;

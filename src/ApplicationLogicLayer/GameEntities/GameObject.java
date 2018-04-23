@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;

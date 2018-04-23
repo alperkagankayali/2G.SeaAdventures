@@ -9,3 +9,7 @@ v 0.2
 v 0.3
 1. Energy and Health classes added (will be implemented)
 2. ObjectRandomLocation: Location class is rewritten instead of using Java.Location
+
+v 0.4
+1. images' directory bugs are fixed
+2. Health and Energy is implemented

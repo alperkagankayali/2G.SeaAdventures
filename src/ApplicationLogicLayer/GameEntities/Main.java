@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,11 +17,6 @@ public class Main extends Application {
 
     @Override
     public void start(final Stage stage) throws FileNotFoundException, InterruptedException {
-
-        //Creating an image
-        Image image = new Image(new FileInputStream("C:\\Users\\SnowPlace\\IdeaProjects\\Demofx_1\\src\\sample\\Enemy_Crab.png"));
-        BigEnemy crab = new BigEnemy( 1000, 200, false, 3 );
-
 
         //Creating a Group object
         Group root = new Group();
@@ -42,7 +37,8 @@ public class Main extends Application {
 
         double lastNanoTime = System.nanoTime();
 
-        ArrayList<Bullet[]> bList = new ArrayList<>();
+        Health health = new Health(5);
+        Energy energy = new Energy(5);
 
         new AnimationTimer()
         {
@@ -58,40 +54,13 @@ public class Main extends Application {
                 gc.clearRect(0, 0, 850,480);
 
                 try {
-                    crab.update( elapsedTime);
+                    health.update( -1);
+                    energy.update(-1);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
-                crab.draw( gc );
-
-                if( crab.getXPos() <= 200)
-                    crab.setHealth( 0);
-                double[] arr = crab.shoot();
-
-
-                if( arr[0] != -1) {
-                    bList.add(new Bullet[crab.getAmountOfProjectile()]);
-                    for (int i = 2; i < arr.length; i++) {
-                        try {
-                            bList.get(bList.size() - 1)[i - 2] = new Bullet(arr[1], arr[i], arr[0], 2);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
-
-                for( int j = 0; j < bList.size(); j++) {
-                    for (int i = 0; i < bList.get(j).length; i++) {
-                        try {
-                            bList.get(j)[i].update(elapsedTime);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        bList.get(j)[i].draw(gc);
-                    }
-                }
+                health.draw(gc);
+                energy.draw(gc);
             }
         }.start();
 

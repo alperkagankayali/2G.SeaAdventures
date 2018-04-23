@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.image.Image;
 
@@ -7,9 +7,9 @@ import java.io.FileNotFoundException;
 
 public class SmallEnemy extends Enemy {
 
-    private final String HCRAB_IMAGE = System.getProperty("user.dir") + "images\\Enemy_Crab.png";
-    private final String ACRAB_IMAGE = System.getProperty("user.dir") + "images\\Enemy_Crab2.png";
-    private final String MINE_IMAGE = System.getProperty("user.dir") + "images\\enemy_mine.png";
+    private final String HCRAB_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Enemy_Crab.png";
+    private final String ACRAB_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Enemy_Crab2.png";
+    private final String MINE_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\enemy_mine.png";
 
     // map level constructor
     SmallEnemy( double xPos, double yPos, int mapLvl) throws FileNotFoundException {

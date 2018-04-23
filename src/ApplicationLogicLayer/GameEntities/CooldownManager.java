@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import java.util.HashMap;
 import java.util.Map;

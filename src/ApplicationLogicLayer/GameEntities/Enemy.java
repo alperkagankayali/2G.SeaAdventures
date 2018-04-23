@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.image.Image;
 
@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 public class Enemy extends GameObject{
 
-    private final String DEATH_IMAGE = System.getProperty("user.dir") + "images\\explosion.png";
+    private final String DEATH_IMAGE = System.getProperty("user.dir") + "\\src\\ApplicationLogicLayer\\GameEntities\\images\\explosion.png";
 
     private int health;
     private int collisionDmg;

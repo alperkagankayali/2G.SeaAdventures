@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.image.Image;
 
@@ -6,8 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class PowerUp extends GameObject {
-    private final String ID1_IMAGE = System.getProperty("user.dir") +  "images\\powerUp_regen.png";
-    private final String ID2_IMAGE = System.getProperty("user.dir") +  "images\\pwup_fuel_energy.png";
+    private final String ID1_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\powerUp_regen.png";
+    private final String ID2_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\pwup_fuel_energy.png";
 
     private int quantityOfEffect;
     private int ID;

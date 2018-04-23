@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.image.Image;
 
@@ -6,9 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class Bullet extends GameObject {
-    private final String ID1_IMAGE = System.getProperty("user.dir") +  "images\\Yellow_projec_L.png";
-    private final String ID2_IMAGE = System.getProperty("user.dir") +  "images\\Blue_projectile_R.png";
-    private final String ID3_IMAGE = System.getProperty("user.dir") +  "images\\projectile_red_circle.png";
+    private final String ID1_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Yellow_projec_L.png";
+    private final String ID2_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Blue_projectile_R.png";
+    private final String ID3_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\projectile_red_circle.png";
 
     private double damage;
     private int ID; // 1 for submarine bullets

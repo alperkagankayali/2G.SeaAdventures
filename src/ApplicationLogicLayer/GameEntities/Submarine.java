@@ -1,4 +1,4 @@
-package GameEntities;//package sample;
+package ApplicationLogicLayer.GameEntities;//package sample;
 //
 //public class Submarine extends GameObject {
 //    private int subLvl;

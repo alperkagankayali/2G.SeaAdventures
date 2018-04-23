@@ -1,4 +1,4 @@
-package GameEntities;
+package ApplicationLogicLayer.GameEntities;
 
 import javafx.scene.image.Image;
 
@@ -8,9 +8,9 @@ import java.io.FileNotFoundException;
 
 public class Boss extends BigEnemy {
 
-    private final String KRAKEN_IMAGE = System.getProperty("user.dir") +  "images\\boss_kraken.png";
-    private final String WHALE_IMAGE = System.getProperty("user.dir") +  "images\\boss_whale.png";
-    private final String OCTOPUS_IMAGE = System.getProperty("user.dir") +  "images\\boss_octopus.png";
+    private final String KRAKEN_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\boss_kraken.png";
+    private final String WHALE_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\boss_whale.png";
+    private final String OCTOPUS_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\boss_octopus.png";
 
     private double abilityCooldown;
     private double currentCooldown;
