@@ -1,75 +1,75 @@
-//package ApplicationLogicLayer.GameEntities;
-//
-//import javafx.animation.AnimationTimer;
-//import javafx.scene.Parent;
-//import javafx.scene.canvas.*;
-//import javafx.scene.canvas.Canvas;
-//import javafx.scene.layout.*;
-//
-//import java.io.FileNotFoundException;
-//import java.util.ArrayList;
-//
-//public class Map implements Runnable{
-//    private Parent root;
-//    private static int mapLevel;
-//    private static boolean level1Completed;
-//    private static boolean level2Completed;
-//
-//
-//    public static boolean isLevel1Completed() {
-//        return level1Completed;
-//    }
-//
-//    public static void setLevel1Completed(boolean level1Completed) {
-//        Map.level1Completed = level1Completed;
-//    }
-//
-//    public static boolean isLevel2Completed() {
-//        return level2Completed;
-//    }
-//
-//    public static void setLevel2Completed(boolean level2Completed) {
-//        Map.level2Completed = level2Completed;
-//    }
-//
-//    public static boolean isLevel3Completed() {
-//        return level3Completed;
-//    }
-//
-//    public static void setLevel3Completed(boolean level3Completed) {
-//        Map.level3Completed = level3Completed;
-//    }
-//
-//    private static boolean level3Completed;
-//    private int deadCount;
-//    private Thread t;
-//    private int totalCountOfEnemies;
-//    private BackgroundImage backgroundImage;
-//    private ObjectRandomLocationManager locationManager;
-//    private ArrayList<GameObject> gameObjects;
-//    public void run(){
-//
-//    }
-//    public Map(){
-//        this.mapLevel = 1;
-//        root = new GridPane();
-//        gameObjects = new ArrayList<>();
-//        locationManager = new ObjectRandomLocationManager();
-//        backgroundImage = new BackgroundImage(new javafx.scene.image.Image("file:\\C:\\Users\\Alper\\IdeaProjects\\draftproject\\stylus-hex-bg-sea-color-final.jpg",852,480,false,true),
-//                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-//                BackgroundSize.DEFAULT);
-//        ((GridPane)this.root).setBackground(new Background(backgroundImage));
-//        ((GridPane)this.root).setPrefSize(852,480);
+package ApplicationLogicLayer.GameEntities;
+
+import javafx.animation.AnimationTimer;
+import javafx.scene.Parent;
+import javafx.scene.canvas.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.layout.*;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
+public class Map implements Runnable{
+    private Parent root;
+    private static int mapLevel;
+    private static boolean level1Completed;
+    private static boolean level2Completed;
+
+
+    public static boolean isLevel1Completed() {
+        return level1Completed;
+    }
+
+    public static void setLevel1Completed(boolean level1Completed) {
+        Map.level1Completed = level1Completed;
+    }
+
+    public static boolean isLevel2Completed() {
+        return level2Completed;
+    }
+
+    public static void setLevel2Completed(boolean level2Completed) {
+        Map.level2Completed = level2Completed;
+    }
+
+    public static boolean isLevel3Completed() {
+        return level3Completed;
+    }
+
+    public static void setLevel3Completed(boolean level3Completed) {
+        Map.level3Completed = level3Completed;
+    }
+
+    private static boolean level3Completed;
+    private int deadCount;
+    private Thread t;
+    private int totalCountOfEnemies;
+    private BackgroundImage backgroundImage;
+    private ObjectRandomLocationManager locationManager;
+    private ArrayList<GameObject> gameObjects;
+    public void run(){
+
+    }
+    public Map(){
+        this.mapLevel = 1;
+        root = new GridPane();
+        gameObjects = new ArrayList<>();
+        locationManager = new ObjectRandomLocationManager();
+        backgroundImage = new BackgroundImage(new javafx.scene.image.Image("file:\\C:\\Users\\Alper\\IdeaProjects\\draftproject\\stylus-hex-bg-sea-color-final.jpg",852,480,false,true),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        ((GridPane)this.root).setBackground(new Background(backgroundImage));
+        ((GridPane)this.root).setPrefSize(852,480);
 //        setEnemies();
-//    }
-//    public int getMapLevel() {
-//        return mapLevel;
-//    }
-//
-//    public void setMapLevel(int mapLevel) {
-//        this.mapLevel = mapLevel;
-//    }
-//
+    }
+    public int getMapLevel() {
+        return mapLevel;
+    }
+
+    public void setMapLevel(int mapLevel) {
+        this.mapLevel = mapLevel;
+    }
+
 //    public void setEnemies(){
 //        try{
 //            int loopnumber;
@@ -230,15 +230,19 @@
 //        }*/
 //        return root;
 //    }
-//
-//
-//    public GameObject getGameObject(double x, double y){
-//        GameObject returnval = null;
-//        for(int i = 0; i < gameObjects.size(); i++){
-//            if(gameObjects.get(i).getXPos() == x && gameObjects.get(i).getYPos() == y){
-//                returnval = gameObjects.get(i);
-//            }
-//        }
-//        return returnval;
-//    }
-//}
+
+
+    public GameObject getGameObject(double x, double y){
+        GameObject returnval = null;
+        for(int i = 0; i < gameObjects.size(); i++){
+            if(gameObjects.get(i).getXPos() == x && gameObjects.get(i).getYPos() == y){
+                returnval = gameObjects.get(i);
+            }
+        }
+        return returnval;
+    }
+
+    public ArrayList<Enemy> getVisibleEnemies() {
+        return null;
+    }
+}

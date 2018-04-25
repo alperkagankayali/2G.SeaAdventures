@@ -37,7 +37,7 @@ public class Main extends Application {
 
         double lastNanoTime = System.nanoTime();
 
-        Submarine sub = new Submarine(5);
+        Submarine sub = Submarine.getSubmarine();
 
         new AnimationTimer()
         {

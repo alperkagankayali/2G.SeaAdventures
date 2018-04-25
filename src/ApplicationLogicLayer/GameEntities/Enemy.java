@@ -80,4 +80,9 @@ public class Enemy extends GameObject{
         else
             this.health = 0;
     }
+
+    public void decreaseHealth( int damage) throws FileNotFoundException {
+        setHealth( health - damage);
+        update(0);
+    }
 }

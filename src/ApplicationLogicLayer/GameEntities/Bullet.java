@@ -16,7 +16,7 @@ public class Bullet extends GameObject {
                     // 3 for enemy skills
 
     // ID constructor
-    public Bullet(double xPos, double yPos, double damage, int ID) throws FileNotFoundException {
+    public Bullet(double damage, int ID, double xPos, double yPos) throws FileNotFoundException {
         super(xPos, yPos);
 
         setID(ID);

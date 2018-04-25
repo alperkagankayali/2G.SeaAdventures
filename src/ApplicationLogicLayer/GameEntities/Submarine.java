@@ -8,37 +8,58 @@ import java.io.FileNotFoundException;
 
 public class Submarine extends GameObject {
     private static final String SUB_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Submarin.png";
+    private static int MAX_SUB_LEVEL = 5;
+
+    private static Submarine submarine;
+
     private int subLevel;
     private Health health;
     private Energy energy;
 //    private Experience experience;
-//    private SkillManager skills;
+    private SkillManager skills;
     private int amountOfProjectile;
     private double attackSpeed;
     private double attackCooldown;
     private int attackDamage;
 
-    public Submarine( int lvl) throws FileNotFoundException {
+    // default constructor
+    public Submarine(){}
+
+    private Submarine( int lvl) throws FileNotFoundException {
         super(0, 200);
-        subLevel = lvl;
+        setSubLevel(lvl);
         setSpriteImage( new Image(new FileInputStream(SUB_IMAGE)));
         health = new Health( subLevel);
         energy = new Energy( subLevel);
-        amountOfProjectile = (1 + subLevel) / 2;
-        attackSpeed = 1.45 - 0.15 * subLevel;
-        attackSpeed = attackSpeed;
-        attackDamage = 15 + 3 * subLevel;
+        setAmountOfProjectile( (1 + subLevel) / 2);
+        setAttackSpeed(1.45 - 0.05 * subLevel);
+        setAttackDamage(15 + 3 * subLevel);
+        skills = new SkillManager(subLevel);
     }
 
-    public void updateExperience( int exp){
-
+    public void createSubmarine( int lvl) throws FileNotFoundException {
+        submarine = new Submarine(lvl);
     }
 
-    public void useSkill( int ID){
-
+    public static Submarine getSubmarine() throws FileNotFoundException {
+        if (null == submarine) {
+            submarine = new Submarine();
+            submarine.createSubmarine(1);
+        }
+        return submarine;
     }
 
-    public void healthDecrease( int dmg) throws FileNotFoundException {
+    public int getSubLevel() {
+        return subLevel;
+    }
+
+    public void setSubLevel(int subLevel) {
+        if( subLevel >= 1 && subLevel <= MAX_SUB_LEVEL) {
+            this.subLevel = subLevel;
+        }
+    }
+
+    public void healthDecrease(int dmg) throws FileNotFoundException {
         health.update( -dmg);
     }
 
@@ -86,16 +107,18 @@ public class Submarine extends GameObject {
     }
 
     /*  index 0 = damage of the bullets
-        index 1 = x position of bullets
+        index 1 = ID of bullets
+        index 2 = x position of bullets
         others = y positions of bullets
      */
     public double[] shoot(){
         if( attackCooldown <= 0) {
-            double[] arr = new double[amountOfProjectile + 2];
+            double[] arr = new double[amountOfProjectile + 3];
             arr[0] = attackDamage;
-            arr[1] = getXPos();
-            for (int i = 2; i < amountOfProjectile + 2; i++) {
-                arr[i] = getYPos() + (getSpriteImage().getHeight() / 2) + (12 * (int)(( i - 1)  / 2) * Math.pow(-1, i - 1));
+            arr[1] = 1;
+            arr[2] = getXPos();
+            for (int i = 0; i < amountOfProjectile; i++) {
+                arr[i + 3] = getYPos() + (getSpriteImage().getHeight() / 2) + (12 * (int)(( i + 1)  / 2) * Math.pow(-1, i + 1));
             }
             attackCooldown = attackSpeed;
             return arr;
@@ -107,6 +130,7 @@ public class Submarine extends GameObject {
     @Override
     public void update(double time) throws FileNotFoundException {
         super.update( time);
+        skills.update( time, this);
         if( attackCooldown > 0)
             attackCooldown = attackCooldown - time;
     }
@@ -116,5 +140,6 @@ public class Submarine extends GameObject {
         super.draw(gc);
         health.draw(gc);
         energy.draw(gc);
+        skills.draw(gc);
     }
 }

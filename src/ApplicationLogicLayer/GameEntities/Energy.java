@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class Energy {
-    private static final int imageSize = 6;
+    private static final int imageSize = 10;
     private int maxEnergy;
     private int energyAmount;
     private int subLevel;
@@ -15,7 +15,7 @@ public class Energy {
     private GameObject object;
 
     public Energy(int sLvl) throws FileNotFoundException {
-        object = new GameObject( 5, 35);
+        object = new GameObject( 15, 26);
         setSubLevel(sLvl);
         setMaxEnergy(75 + 25 * subLevel);
         setEnergyAmount(maxEnergy);
@@ -23,7 +23,7 @@ public class Energy {
         for(int i = 0; i < imageSize; i++ ){
             IMAGES[i] = new Image(new FileInputStream(System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\energy_" + i + ".png"));
         }
-        object.setSpriteImage( IMAGES[ (energyAmount + maxEnergy / (2 * (imageSize - 1) ) ) / (maxEnergy / (imageSize - 1) )]);
+        object.setSpriteImage( IMAGES[ (energyAmount + 1 ) / (maxEnergy / (imageSize - 1) )]);
         update( 0);
     }
 
@@ -44,11 +44,13 @@ public class Energy {
     }
 
     public void setEnergyAmount(int energyAmount) {
-        if( energyAmount >= 0) {
-            this.energyAmount = energyAmount;
+        if( energyAmount <= 0) {
+            this.energyAmount = 0;
+        } else if( energyAmount >= maxEnergy){
+            this.energyAmount = maxEnergy;
         }
         else
-            this.energyAmount = 0;
+            this.energyAmount = energyAmount;
     }
 
     public void setSubLevel(int subLevel) {
@@ -60,8 +62,7 @@ public class Energy {
 
     public void update( int increaseAmount) throws FileNotFoundException {
         setEnergyAmount( getEnergyAmount() + increaseAmount);
-        object.setSpriteImage( IMAGES[ (energyAmount + maxEnergy / (2 * (imageSize - 1) ) ) / (maxEnergy / (imageSize - 1) )]);
-        object.update( 0);
+        object.setSpriteImage( IMAGES[ (energyAmount + 1 ) / (maxEnergy / (imageSize - 1) )]);
     }
 
     public void draw(GraphicsContext gc)

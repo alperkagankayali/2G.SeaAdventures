@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class Health {
-    private static final int imageSize = 6;
+    private static final int imageSize = 10;
     private int maxHealth;
     private int healthAmount;
     private int subLevel;
@@ -15,7 +15,7 @@ public class Health {
     private GameObject object;
 
     public Health(int sLvl) throws FileNotFoundException {
-        object = new GameObject( 5, 5);
+        object = new GameObject( 15, 5);
         setSubLevel(sLvl);
         setMaxHealth(75 + 25 * subLevel);
         setHealthAmount(maxHealth);
@@ -23,7 +23,7 @@ public class Health {
         for(int i = 0; i < imageSize; i++ ){
             IMAGES[i] = new Image(new FileInputStream(System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\health_" + i + ".png"));
         }
-        object.setSpriteImage( IMAGES[ (healthAmount + maxHealth / (2 * (imageSize - 1) ) ) / (maxHealth / (imageSize - 1) )]);
+        object.setSpriteImage( IMAGES[ (healthAmount + 1 ) / (maxHealth / (imageSize - 1) )]);
         update( 0);
     }
 
@@ -44,11 +44,14 @@ public class Health {
     }
 
     public void setHealthAmount(int healthAmount) {
-        if( healthAmount >= 0) {
-            this.healthAmount = healthAmount;
+        if( healthAmount <= 0) {
+            this.healthAmount = 0;
+        }
+        else if (healthAmount >= maxHealth){
+            this.healthAmount = maxHealth;
         }
         else
-            this.healthAmount = 0;
+            this.healthAmount = healthAmount;
     }
 
     public void setSubLevel(int subLevel) {
@@ -60,8 +63,7 @@ public class Health {
 
     public void update( int increaseAmount) throws FileNotFoundException {
         setHealthAmount( getHealthAmount() + increaseAmount);
-        object.setSpriteImage( IMAGES[ (healthAmount + maxHealth / (2 * (imageSize - 1) ) ) / (maxHealth / (imageSize - 1) )]);
-        object.update( 0);
+        object.setSpriteImage( IMAGES[ (healthAmount + 1 ) / (maxHealth / (imageSize - 1) )]);
     }
 
     public void draw(GraphicsContext gc)

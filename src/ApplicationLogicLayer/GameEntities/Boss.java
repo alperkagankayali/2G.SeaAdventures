@@ -73,10 +73,15 @@ public class Boss extends BigEnemy {
             throw new ArrayIndexOutOfBoundsException("Invalid value is entered");
     }
 
+    /*  index 0 = damage of the bullets
+        index 1 = ID of bullets
+        index 2 = x position of bullets
+        index 3 = y position of bullets
+     */
     public double[] useAbility(){
         if( currentCooldown <= 0)
         {
-            double[] arr = {getXPos(), getYPos() + getSpriteImage().getHeight() / 2, abilityDamage};
+            double[] arr = {getAbilityDamage(), 3, getXPos(), getYPos() + getSpriteImage().getHeight() / 2};
             return arr;
         }
         else {

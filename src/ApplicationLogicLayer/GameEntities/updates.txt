@@ -16,3 +16,10 @@ v 0.4
 
 v 0.5
 1. Submarine is implemented
+
+v 0.6
+1. Minor changes in shoot methods
+2. Submarine is Singleton
+3. Skill and SkillManager are reimplemented
+4. CooldownManager is deleted, Skill does functions of CooldownManager
+5. Precision of Health and Energy improved

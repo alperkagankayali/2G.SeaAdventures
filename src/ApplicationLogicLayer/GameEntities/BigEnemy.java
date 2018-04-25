@@ -104,16 +104,18 @@ public class BigEnemy extends ApplicationLogicLayer.GameEntities.Enemy {
     }
 
     /*  index 0 = damage of the bullets
-        index 1 = x position of bullets
+        index 1 = ID of bullets
+        index 2 = x position of bullets
         others = y positions of bullets
      */
     public double[] shoot(){
         if( shootCooldown <= 0 && isVisible()) {
             double[] arr = new double[amountOfProjectile + 2];
             arr[0] = attackDamage;
-            arr[1] = getXPos();
-            for (int i = 2; i < amountOfProjectile + 2; i++) {
-                arr[i] = getYPos() + (getSpriteImage().getHeight() / 2) + (12 * (int)(( i - 1)  / 2) * Math.pow(-1, i - 1));
+            arr[1] = 2;
+            arr[2] = getXPos();
+            for (int i = 0; i < amountOfProjectile; i++) {
+                arr[i + 3] = getYPos() + (getSpriteImage().getHeight() / 2) + (12 * (int)(( i + 1)  / 2) * Math.pow(-1, i + 1));
             }
             shootCooldown = attackSpeed;
             return arr;
