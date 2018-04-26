@@ -61,7 +61,7 @@ public class Energy {
     }
 
     public void update( int increaseAmount) throws FileNotFoundException {
-        setEnergyAmount( getEnergyAmount() + increaseAmount);
+        setEnergyAmount( energyAmount + increaseAmount);
         object.setSpriteImage( IMAGES[ (energyAmount + 1 ) / (maxEnergy / (imageSize - 1) )]);
     }
 

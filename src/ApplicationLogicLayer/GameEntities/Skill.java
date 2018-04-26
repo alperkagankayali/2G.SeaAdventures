@@ -17,6 +17,7 @@ public class Skill {
     private static final String SUBMARINE_RED_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Submarin_red.png";
     private static final String SUBMARINE_BLUE_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Submarin_blue.png";
     private static final String SUBMARINE_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Submarin.png";
+    private static final String DECTRUCTION_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\destruction.png";
 
     //Attributes
     private double maxEffectTime;
@@ -24,6 +25,7 @@ public class Skill {
 
     //delegation pattern
     private GameObject object;
+    private GameObject destr;
     private double timeOfEffect;
     private double cooldownTime;
     private int damage;
@@ -31,12 +33,14 @@ public class Skill {
     private int skillID;
     private boolean onEffect;
     private boolean unlocked;
+    private boolean onCooldown;
     private int energyCost;
     private int subLvl;
 
     //Constructor
     public Skill(int ID, int subLvl) throws FileNotFoundException {
         setSkillID( ID);
+        destr = null;
         object = new GameObject(10 + 40 * (ID - 1), 51);
         object.setSpriteImage(new Image( new FileInputStream(LOCKED_IMAGE)));
         updateStats(subLvl);
@@ -47,10 +51,10 @@ public class Skill {
 
 
     //Methods
-    private void updateStats( int subLvl){
+    private void updateStats( int subLvl) throws FileNotFoundException {
         this.subLvl = subLvl;
         if( skillID == 1){
-            maxEffectTime = 0;
+            maxEffectTime = 0.6;
             maxCooldownTime = 30 - 3 * ( subLvl - 1);
             setDamage( 30 + 10 * subLvl);
             setFinalAttackSpeed(0);
@@ -58,10 +62,10 @@ public class Skill {
         }
         if( skillID == 2){
             maxEffectTime = 10;
-            maxCooldownTime = 40 - 5 * ( subLvl - 2);
+            maxCooldownTime = 40 - 3 * ( subLvl - 2);
             setDamage( 0);
             setFinalAttackSpeed( subLvl);
-            setEnergyCost(40);
+            setEnergyCost(30);
         }
         if( skillID == 3){
             maxEffectTime = 10;
@@ -71,6 +75,7 @@ public class Skill {
             setEnergyCost(40);
         }
         setUnlocked(subLvl);
+        restoreImages();
     }
 
     public void massDestruction(Map gameMap) throws FileNotFoundException {
@@ -78,18 +83,21 @@ public class Skill {
         for( Enemy enemy: enemies){
             enemy.decreaseHealth( damage);
         }
-        setCooldownTime( maxCooldownTime);
-
+        useSkill();
+        setOnEffect();
+        setTimeOfEffect( maxEffectTime);
+        destr = new GameObject( 330, 125);
+        destr.setSpriteImage( new Image( new FileInputStream(DECTRUCTION_IMAGE)));
     }
     public void speedBooster(Submarine sub) throws FileNotFoundException {
         sub.setAttackSpeed( finalAttackSpeed / 2);
-        setCooldownTime( maxCooldownTime);
+        useSkill();
         setOnEffect();
         setTimeOfEffect( maxEffectTime);
         sub.setSpriteImage( new Image( new FileInputStream(SUBMARINE_RED_IMAGE)));
     }
     public void invulnerability(Submarine sub) throws FileNotFoundException {
-        setCooldownTime( maxCooldownTime);
+        useSkill();
         setOnEffect();
         setTimeOfEffect( maxEffectTime);
         sub.setSpriteImage( new Image( new FileInputStream(SUBMARINE_BLUE_IMAGE)));
@@ -127,14 +135,14 @@ public class Skill {
         if( timeOfEffect == 0){
             sub.setSpriteImage( new Image( new FileInputStream(SUBMARINE_IMAGE)));
             if( skillID == 1){
-                object.setSpriteImage( new Image( new FileInputStream(SKILL1_IMAGE)));
+                destr.setSpriteImage(null);
             }
             if( skillID == 2){
                 sub.setAttackSpeed( finalAttackSpeed);
-                object.setSpriteImage( new Image( new FileInputStream(SKILL2_IMAGE)));
+                object.setSpriteImage( new Image( new FileInputStream(COOLDOWN_IMAGE)));
             }
             if( skillID == 3){
-                object.setSpriteImage( new Image( new FileInputStream(SKILL3_IMAGE)));
+                object.setSpriteImage( new Image( new FileInputStream(COOLDOWN_IMAGE)));
             }
         }
     }
@@ -145,7 +153,7 @@ public class Skill {
 
     public void setCooldownTime(double cooldownTime) {
         if( cooldownTime < 0){
-            cooldownTime = 0;
+            this.cooldownTime = 0;
         }
         else
             this.cooldownTime = cooldownTime;
@@ -197,6 +205,8 @@ public class Skill {
 
     public void draw(GraphicsContext g){
         object.draw( g);
+        if( destr != null)
+            destr.draw( g);
     }
 
     public void update( double time, Submarine sub) throws FileNotFoundException {
@@ -206,6 +216,14 @@ public class Skill {
         if( isOnEffect()){
             updateTimeEffect( time, sub);
         }
+        if( !isOnCooldown()){
+            restoreImages();
+        }else{
+            cooldownTime -= time;
+        }
+    }
+
+    private void restoreImages() throws FileNotFoundException {
         if( isUnlocked() ){
             if( skillID == 1){
                 object.setSpriteImage( new Image( new FileInputStream(SKILL1_IMAGE)));
@@ -217,5 +235,14 @@ public class Skill {
                 object.setSpriteImage( new Image( new FileInputStream(SKILL3_IMAGE)));
             }
         }
+    }
+
+    public boolean isOnCooldown() {
+        setOnCooldown();
+        return onCooldown;
+    }
+
+    public void setOnCooldown() {
+        onCooldown = cooldownTime > 0;
     }
 }

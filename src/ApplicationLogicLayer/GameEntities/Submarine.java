@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 public class Submarine extends GameObject {
     private static final String SUB_IMAGE = System.getProperty("user.dir") +  "\\src\\ApplicationLogicLayer\\GameEntities\\images\\Submarin.png";
     private static int MAX_SUB_LEVEL = 5;
+    private static int VELOCITY = 50;
 
     private static Submarine submarine;
 
@@ -59,7 +60,7 @@ public class Submarine extends GameObject {
     }
 
     public void useSkill( int ID) throws FileNotFoundException {
-        if(skills.getSkill(ID) != null && skills.getSkill(ID).getEnergyCost() <= energy.getEnergyAmount()){
+        if(skills.getSkill(ID) != null && skills.getSkill(ID).getEnergyCost() <= energy.getEnergyAmount() && !skills.getSkill(ID).isOnCooldown()){
             energy.update( -skills.getSkill(ID).getEnergyCost());
             if(ID == 1){
                 skills.getSkill(ID).massDestruction( Map.getMap());

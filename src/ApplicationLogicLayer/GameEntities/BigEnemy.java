@@ -129,8 +129,6 @@ public class BigEnemy extends ApplicationLogicLayer.GameEntities.Enemy {
         super.update(time);
         if( shootCooldown > 0)
             shootCooldown = shootCooldown - time;
-        if( ( (getYPos() > 480 - getHeight()) && getYVelocity() > 0) || (getYPos() < 10 && getYVelocity() < 0))
-            setVelocity(getXVelocity(), -getYVelocity());
     }
 
     @Override

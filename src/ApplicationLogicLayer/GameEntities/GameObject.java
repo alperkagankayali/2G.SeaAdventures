@@ -111,6 +111,8 @@ public class GameObject {
         else {
             xPos += time * -50;
         }
+        if( ( (getYPos() > 480 - getHeight()) && getYVelocity() > 0) || (getYPos() < 10 && getYVelocity() < 0))
+            setVelocity(getXVelocity(), -getYVelocity());
     }
 
 }

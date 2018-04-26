@@ -42,8 +42,10 @@ public class Main extends Application {
         new AnimationTimer()
         {
             double lastNanoTime = System.nanoTime();
+            int count = 0;
             public void handle(long currentNanoTime)
             {
+                count++;
                 // calculate time since last update.
                 double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
                 lastNanoTime = currentNanoTime;
@@ -51,7 +53,14 @@ public class Main extends Application {
                 // draw
 
                 gc.clearRect(0, 0, 850,480);
-
+                sub.setSubLevel(5);
+                if( count >= 100) {
+                    try {
+                        sub.useSkill(1);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
                 try {
                     sub.update( elapsedTime);
                 } catch (FileNotFoundException e) {
