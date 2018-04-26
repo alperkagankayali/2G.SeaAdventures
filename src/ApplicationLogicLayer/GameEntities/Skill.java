@@ -41,7 +41,7 @@ public class Skill {
     public Skill(int ID, int subLvl) throws FileNotFoundException {
         setSkillID( ID);
         destr = null;
-        object = new GameObject(10 + 40 * (ID - 1), 51);
+        object = new GameObject(15 + 40 * (ID - 1), 435);
         object.setSpriteImage(new Image( new FileInputStream(LOCKED_IMAGE)));
         updateStats(subLvl);
         setTimeOfEffect(0);

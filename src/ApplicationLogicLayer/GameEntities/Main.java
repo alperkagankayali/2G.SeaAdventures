@@ -53,7 +53,12 @@ public class Main extends Application {
                 // draw
 
                 gc.clearRect(0, 0, 850,480);
-                sub.setSubLevel(5);
+                sub.setSubLevel(1);
+                try {
+                    sub.updateExperience(1);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
                 if( count >= 100) {
                     try {
                         sub.useSkill(1);

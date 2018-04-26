@@ -16,7 +16,7 @@ public class Submarine extends GameObject {
     private int subLevel;
     private Health health;
     private Energy energy;
-//    private Experience experience;
+    private Experience experience;
     private SkillManager skills;
     private int amountOfProjectile;
     private double attackSpeed;
@@ -32,6 +32,7 @@ public class Submarine extends GameObject {
         setSpriteImage( new Image(new FileInputStream(SUB_IMAGE)));
         updateStats();
         skills = new SkillManager(subLevel);
+        experience = new Experience( lvl);
     }
 
     private void updateStats() throws FileNotFoundException {
@@ -72,6 +73,10 @@ public class Submarine extends GameObject {
                 skills.getSkill(ID).invulnerability( getSubmarine());
             }
         }
+    }
+
+    public void updateExperience( int exp) throws FileNotFoundException {
+        experience.update( exp, this);
     }
 
     public void healthDecrease(int dmg) throws FileNotFoundException {
@@ -161,5 +166,6 @@ public class Submarine extends GameObject {
         health.draw(gc);
         energy.draw(gc);
         skills.draw(gc);
+        experience.draw(gc);
     }
 }

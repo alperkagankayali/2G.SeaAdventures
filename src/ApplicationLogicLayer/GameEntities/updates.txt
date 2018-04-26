@@ -28,3 +28,7 @@ v 0.7
 1. Map is Singleton
 2. useSkill implemented
 3. Major changes in Skill, SkillManager and Submarine
+
+v 0.8
+1. Experience is implemented
+2. Minor changes in submarine
