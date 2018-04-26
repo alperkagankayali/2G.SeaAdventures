@@ -23,3 +23,8 @@ v 0.6
 3. Skill and SkillManager are reimplemented
 4. CooldownManager is deleted, Skill does functions of CooldownManager
 5. Precision of Health and Energy improved
+
+v 0.7
+1. Map is Singleton
+2. useSkill implemented
+3. Major changes in Skill, SkillManager and Submarine

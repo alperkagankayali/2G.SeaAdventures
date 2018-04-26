@@ -29,22 +29,21 @@ public class Submarine extends GameObject {
         super(0, 200);
         setSubLevel(lvl);
         setSpriteImage( new Image(new FileInputStream(SUB_IMAGE)));
+        updateStats();
+        skills = new SkillManager(subLevel);
+    }
+
+    private void updateStats() throws FileNotFoundException {
         health = new Health( subLevel);
         energy = new Energy( subLevel);
         setAmountOfProjectile( (1 + subLevel) / 2);
         setAttackSpeed(1.45 - 0.05 * subLevel);
         setAttackDamage(15 + 3 * subLevel);
-        skills = new SkillManager(subLevel);
-    }
-
-    public void createSubmarine( int lvl) throws FileNotFoundException {
-        submarine = new Submarine(lvl);
     }
 
     public static Submarine getSubmarine() throws FileNotFoundException {
         if (null == submarine) {
-            submarine = new Submarine();
-            submarine.createSubmarine(1);
+            submarine = new Submarine(1);
         }
         return submarine;
     }
@@ -59,8 +58,28 @@ public class Submarine extends GameObject {
         }
     }
 
+    public void useSkill( int ID) throws FileNotFoundException {
+        if(skills.getSkill(ID) != null && skills.getSkill(ID).getEnergyCost() <= energy.getEnergyAmount()){
+            energy.update( -skills.getSkill(ID).getEnergyCost());
+            if(ID == 1){
+                skills.getSkill(ID).massDestruction( Map.getMap());
+            }
+            if( ID == 2){
+                skills.getSkill(ID).speedBooster( getSubmarine());
+            }
+            if( ID == 3){
+                skills.getSkill(ID).invulnerability( getSubmarine());
+            }
+        }
+    }
+
     public void healthDecrease(int dmg) throws FileNotFoundException {
-        health.update( -dmg);
+        if( skills.getSkill(3) == null){
+            health.update(-dmg);
+        }
+        else if ( !skills.getSkill(3).isOnEffect()) {
+            health.update(-dmg);
+        }
     }
 
     public void regenHealth( PowerUp pu) throws FileNotFoundException {

@@ -31,38 +31,48 @@ public class Skill {
     private int skillID;
     private boolean onEffect;
     private boolean unlocked;
+    private int energyCost;
+    private int subLvl;
 
     //Constructor
     public Skill(int ID, int subLvl) throws FileNotFoundException {
         setSkillID( ID);
         object = new GameObject(10 + 40 * (ID - 1), 51);
         object.setSpriteImage(new Image( new FileInputStream(LOCKED_IMAGE)));
-        if( ID == 1){
-            maxEffectTime = 0;
-            maxCooldownTime = 30 - 3 * ( subLvl - 1);
-            setDamage( 30 + 10 * subLvl);
-            setFinalAttackSpeed(0);
-        }
-        if( ID == 2){
-            maxEffectTime = 10;
-            maxCooldownTime = 40 - 5 * ( subLvl - 2);
-            setDamage( 0);
-            setFinalAttackSpeed( subLvl);
-        }
-        if( ID == 3){
-            maxEffectTime = 10;
-            maxCooldownTime = 30 - 3 * ( subLvl - 3);
-            setDamage( 0);
-            setFinalAttackSpeed(0);
-        }
+        updateStats(subLvl);
         setTimeOfEffect(0);
         setCooldownTime(0);
         setOnEffect();
-        setUnlocked(subLvl);
     }
 
 
     //Methods
+    private void updateStats( int subLvl){
+        this.subLvl = subLvl;
+        if( skillID == 1){
+            maxEffectTime = 0;
+            maxCooldownTime = 30 - 3 * ( subLvl - 1);
+            setDamage( 30 + 10 * subLvl);
+            setFinalAttackSpeed(0);
+            setEnergyCost(30);
+        }
+        if( skillID == 2){
+            maxEffectTime = 10;
+            maxCooldownTime = 40 - 5 * ( subLvl - 2);
+            setDamage( 0);
+            setFinalAttackSpeed( subLvl);
+            setEnergyCost(40);
+        }
+        if( skillID == 3){
+            maxEffectTime = 10;
+            maxCooldownTime = 30 - 3 * ( subLvl - 3);
+            setDamage( 0);
+            setFinalAttackSpeed(0);
+            setEnergyCost(40);
+        }
+        setUnlocked(subLvl);
+    }
+
     public void massDestruction(Map gameMap) throws FileNotFoundException {
         ArrayList<Enemy> enemies = gameMap.getVisibleEnemies();
         for( Enemy enemy: enemies){
@@ -88,6 +98,16 @@ public class Skill {
     public void useSkill() throws FileNotFoundException {
         setCooldownTime( maxCooldownTime);
         object.setSpriteImage( new Image( new FileInputStream(COOLDOWN_IMAGE)));
+    }
+
+
+    public int getEnergyCost() {
+        return energyCost;
+    }
+
+    public void setEnergyCost(int energyCost) {
+        if( energyCost >= 0)
+            this.energyCost = energyCost;
     }
 
     public double getTimeOfEffect() {
@@ -180,6 +200,9 @@ public class Skill {
     }
 
     public void update( double time, Submarine sub) throws FileNotFoundException {
+        if( sub.getSubLevel() != subLvl){
+            updateStats( sub.getSubLevel());
+        }
         if( isOnEffect()){
             updateTimeEffect( time, sub);
         }

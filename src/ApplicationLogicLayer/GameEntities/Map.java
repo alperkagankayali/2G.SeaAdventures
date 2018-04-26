@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Map implements Runnable{
+    private static Map map;
     private Parent root;
     private static int mapLevel;
     private static boolean level1Completed;
@@ -50,7 +51,7 @@ public class Map implements Runnable{
     public void run(){
 
     }
-    public Map(){
+    private Map(){
         this.mapLevel = 1;
         root = new GridPane();
         gameObjects = new ArrayList<>();
@@ -62,6 +63,14 @@ public class Map implements Runnable{
         ((GridPane)this.root).setPrefSize(852,480);
 //        setEnemies();
     }
+
+    public static Map getMap(){
+        if( map == null){
+            map = new Map();
+        }
+        return map;
+    }
+
     public int getMapLevel() {
         return mapLevel;
     }
