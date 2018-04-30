@@ -35,9 +35,9 @@ public class BigEnemy extends ApplicationLogicLayer.GameEntities.Enemy {
             setCollisionDmg(20 + 10 * mapLvl);
             setExperiencePrize(50 + 25 * mapLvl);
             setScorePrize( 50 + 25 * mapLvl);
-            setAttackDamage(5 + 5 * mapLvl);
+            setAttackDamage(10 + 5 * mapLvl);
             setAmountOfProjectile( mapLvl);
-            setAttackSpeed(1);
+            setAttackSpeed(2);
         } else if (choice == 2) {
             // create Jelly
             setVelocity(-10, -50);
@@ -46,9 +46,9 @@ public class BigEnemy extends ApplicationLogicLayer.GameEntities.Enemy {
             setCollisionDmg(20 + 10 * mapLvl);
             setExperiencePrize(75 + 50 * mapLvl);
             setScorePrize( 75 + 50 * mapLvl);
-            setAttackDamage(5 + 3 * mapLvl);
-            setAmountOfProjectile(6);
-            setAttackSpeed(2.5);
+            setAttackDamage(9 + 3 * mapLvl);
+            setAmountOfProjectile(5);
+            setAttackSpeed(4);
         } else {
             // create Sea horse
             setVelocity(0, 25);
@@ -57,9 +57,9 @@ public class BigEnemy extends ApplicationLogicLayer.GameEntities.Enemy {
             setCollisionDmg(20 + 15 * mapLvl);
             setExperiencePrize(25 + 25 * mapLvl);
             setScorePrize( 25 + 25 * mapLvl);
-            setAttackDamage(5 + 5 * mapLvl);
+            setAttackDamage(10 + 8 * mapLvl);
             setAmountOfProjectile(1);
-            setAttackSpeed(0.5);
+            setAttackSpeed(1.25);
         }
 
     }

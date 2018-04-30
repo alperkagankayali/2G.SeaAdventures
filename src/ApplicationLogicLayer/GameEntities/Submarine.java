@@ -35,7 +35,7 @@ public class Submarine extends GameObject {
         experience = new Experience( lvl);
     }
 
-    private void updateStats() throws FileNotFoundException {
+    public void updateStats() throws FileNotFoundException {
         health = new Health( subLevel);
         energy = new Energy( subLevel);
         setAmountOfProjectile( (1 + subLevel) / 2);
@@ -154,7 +154,12 @@ public class Submarine extends GameObject {
 
     @Override
     public void update(double time) throws FileNotFoundException {
-        super.update( time);
+        if( ((getXPos() + time * getXVelocity()) <= 425 - getWidth())
+                && ((getXPos() + time * getXVelocity()) >= getWidth())
+                && ((getYPos() + time * getYVelocity()) <= 480 - getHeight())
+                && ((getYPos() + time * getYVelocity()) >= getHeight()) ){
+            super.update( time);
+        }
         skills.update( time, this);
         if( attackCooldown > 0)
             attackCooldown = attackCooldown - time;

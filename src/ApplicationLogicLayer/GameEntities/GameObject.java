@@ -19,16 +19,22 @@ public class GameObject {
     GameObject( double xPos, double yPos){
         setLocation(xPos, yPos);
         setVelocity(0, 0);
-        if( xPos <= 750 && yPos <= 480 && xPos >= 0 && yPos >= 0) {
-            setVisible();
+        if( xPos <= 850 && yPos <= 480 && xPos >= 0 && yPos >= 0) {
+            visible = true;
+        }
+        else{
+            visible = false;
         }
     }
 
     // constructor with detailed data
     GameObject(Image image, double xPos, double yPos, double xVelocity, double yVelocity){
         setLocation(xPos, yPos);
-        if( xPos <= 750 && yPos <= 480 && xPos >= 0 && yPos >= 0) {
-            setVisible();
+        if( xPos <= 850 && yPos <= 480 && xPos >= 0 && yPos >= 0) {
+            visible = true;
+        }
+        else{
+            visible = false;
         }
         setVelocity( xVelocity, yVelocity);
         setSpriteImage( image);

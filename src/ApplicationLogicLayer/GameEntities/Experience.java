@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 public class Experience {
     private static final int imageSize = 8;
     private static final int maxLvl = 5;
+    private static final int expCap = 1000;
     private int maxExperience;
     private int curExperience;
     private int subLevel;
@@ -34,7 +35,7 @@ public class Experience {
 
     private void updateStats( int sLvl) {
         setSubLevel(sLvl);
-        setMaxExperience(100 + 200 * subLevel);
+        setMaxExperience(expCap / 2 + expCap * subLevel);
         setCurExperience(0);
         lvlBar.setSpriteImage( LEVEL[sLvl]);
     }
@@ -77,6 +78,7 @@ public class Experience {
         expBar.setSpriteImage( EXPBAR[ (curExperience + 1 ) / (maxExperience / (imageSize - 1) )]);
         if( curExperience == maxExperience && subLevel != maxLvl){
             sub.setSubLevel( subLevel + 1);
+            sub.updateStats();
             updateStats( subLevel + 1);
         }
     }

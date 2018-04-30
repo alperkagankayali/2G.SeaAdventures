@@ -35,3 +35,7 @@ v 0.8
 
 v 0.9
 1. Images are modified
+
+v 1.0 alpha
+1. Minor changesin all classes
+2. Images are modified

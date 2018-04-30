@@ -79,10 +79,10 @@ public class Skill {
     }
 
     public void massDestruction(Map gameMap) throws FileNotFoundException {
-        ArrayList<Enemy> enemies = gameMap.getVisibleEnemies();
-        for( Enemy enemy: enemies){
-            enemy.decreaseHealth( damage);
-        }
+//        ArrayList<Enemy> enemies = gameMap.getVisibleEnemies();
+//        for( Enemy enemy: enemies){
+//            enemy.decreaseHealth( damage);
+//        }
         useSkill();
         setOnEffect();
         setTimeOfEffect( maxEffectTime);
@@ -90,7 +90,7 @@ public class Skill {
         destr.setSpriteImage( new Image( new FileInputStream(DECTRUCTION_IMAGE)));
     }
     public void speedBooster(Submarine sub) throws FileNotFoundException {
-        sub.setAttackSpeed( finalAttackSpeed / 2);
+        sub.setAttackSpeed( finalAttackSpeed / 3);
         useSkill();
         setOnEffect();
         setTimeOfEffect( maxEffectTime);
