@@ -73,12 +73,17 @@ public class Experience {
     }
 
     public void update( int increaseAmount, Submarine sub) throws FileNotFoundException {
+        subLevel = sub.getSubLevel();
         setCurExperience( curExperience + increaseAmount);
         expBar.setSpriteImage( EXPBAR[ (curExperience + 1 ) / (maxExperience / (imageSize - 1) )]);
-        if( curExperience == maxExperience && subLevel != maxLvl){
+        System.out.println(curExperience);
+        System.out.println(maxExperience);
+        if( curExperience >= maxExperience && subLevel != maxLvl){
+            System.out.println("entered here");
             sub.setSubLevel( subLevel + 1);
             sub.updateStats();
             updateStats( subLevel + 1);
+            //lvlBar.setSpriteImage(LEVEL[subLevel + 1]);
         }
     }
 

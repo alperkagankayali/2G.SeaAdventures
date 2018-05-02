@@ -105,7 +105,7 @@ public class GameObject {
     }
 
     public Rectangle getCollisionRectangle(){
-        return new Rectangle( xPos, yPos, spriteImage.getRequestedWidth(), spriteImage.getHeight());
+        return new Rectangle( xPos, yPos, spriteImage.getWidth(), spriteImage.getHeight());
     }
 
     public void update(double time) throws FileNotFoundException {

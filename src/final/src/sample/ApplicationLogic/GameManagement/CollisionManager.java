@@ -10,11 +10,15 @@ public class CollisionManager {
     public boolean checkGameObjectCollision(GameObject g1, GameObject g2){
         object1 = g1;
         object2 = g2;
-        double xPosOfEnemy = g2.getCollisionRectangle().getX();
-        double yPosOfEnemy = g2.getCollisionRectangle().getY();
-        double widthOfEnemy = g2.getCollisionRectangle().getWidth();
-        double heightOfEnemy = g2.getCollisionRectangle().getHeight();
-        if(g1.getCollisionRectangle().intersects(xPosOfEnemy,yPosOfEnemy,widthOfEnemy,heightOfEnemy)){
+        double xPosOfEnemy = g1.getCollisionRectangle().getX();
+        //System.out.println(xPosOfEnemy);
+        double yPosOfEnemy = g1.getCollisionRectangle().getY();
+        //System.out.println(yPosOfEnemy);
+        double widthOfEnemy = g1.getCollisionRectangle().getWidth();
+        //System.out.println(widthOfEnemy);
+        double heightOfEnemy = g1.getCollisionRectangle().getHeight();
+        //System.out.println(heightOfEnemy);
+        if(g2.getCollisionRectangle().intersects(xPosOfEnemy,yPosOfEnemy,widthOfEnemy,heightOfEnemy)){
             return true;
         }
         return false;

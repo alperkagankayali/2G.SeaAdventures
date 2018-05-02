@@ -64,7 +64,7 @@ public class BigEnemy extends Enemy{
             setAttackSpeed(4);
         } else {
             // create Sea horse
-            setVelocity(0, 25);
+            setVelocity(-10, 25);
             setSpriteImage(new Image(new FileInputStream(SEAHORSE_IMAGE)));
             setHealth(30 + 30 * mapLvl);
             setCollisionDmg(20 + 15 * mapLvl);

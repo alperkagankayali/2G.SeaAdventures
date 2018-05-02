@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class Map implements Runnable{
     private Parent root;
+    private final String FIRST_LEVEL_BACKGROUND_IMAGE = System.getProperty("user.dir") + "\\src\\sample\\ApplicationLogic\\GameEntities\\images\\stylus-hex-bg-sea-color-final.jpg";
+    private final String SECOND_LEVEL_BACKGROUND_IMAGE = System.getProperty("user.dir") + "\\src\\sample\\ApplicationLogic\\GameEntities\\images\\472963309.jpg";
+    private final String THIRD_LEVEL_BACKGROUND_IMAGE = System.getProperty("user.dir") + "\\src\\sample\\ApplicationLogic\\GameEntities\\images\\stylus-hex-bg-sea-color-final.jpg";
+    private final String[] backgroundImages = {FIRST_LEVEL_BACKGROUND_IMAGE, SECOND_LEVEL_BACKGROUND_IMAGE, THIRD_LEVEL_BACKGROUND_IMAGE};
     private static int mapLevel;
     private static boolean level1Completed;
     private static boolean level2Completed;
@@ -56,17 +60,20 @@ public class Map implements Runnable{
         root = new GridPane();
         gameObjects = new ArrayList<>();
         locationManager = new ObjectRandomLocationManager();
-        backgroundImage = new BackgroundImage(new javafx.scene.image.Image("file:\\" + System.getProperty("user.dir") + "\\src\\sample\\ApplicationLogic\\GameEntities\\images\\stylus-hex-bg-sea-color-final.jpg",852,480,false,true),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        ((GridPane)this.root).setBackground(new Background(backgroundImage));
-        ((GridPane)this.root).setPrefSize(852,480);
+        setBackgroundImage(FIRST_LEVEL_BACKGROUND_IMAGE);
         setEnemies();
         try{
             submarine = Submarine.getSubmarine();
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    public void setBackgroundImage(String backgroundImage){
+        this.backgroundImage = new BackgroundImage(new javafx.scene.image.Image("file:\\" + backgroundImage,852,480,false,true),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        ((GridPane)this.root).setBackground(new Background(this.backgroundImage));
+        ((GridPane)this.root).setPrefSize(852,480);
     }
     public int getMapLevel() {
         return mapLevel;
@@ -78,13 +85,18 @@ public class Map implements Runnable{
 
     public void setEnemies(){
         try{
+            gameObjects.clear();
             int loopnumber;
             if(mapLevel == 1)
                 loopnumber = 20;
-            else if(mapLevel == 2)
+            else if(mapLevel == 2){
                 loopnumber = 40;
+                System.out.println(gameObjects.size());
+            }
             else
                 loopnumber = 60;
+            //System.out.println(loopnumber);
+            int count = 0;
             totalCountOfEnemies = loopnumber;
             for(int i = 0; i < loopnumber; i++){
                 GameObject gameObject;
@@ -107,9 +119,12 @@ public class Map implements Runnable{
                         double y = locationManager.getY();
                         gameObject = new SmallEnemy(x, y, false, mapLevel);
                         gameObjects.add(gameObject);
+                        count++;
                     }
                 }
+
                 else if(i < loopnumber-1){
+                    System.out.println("entered here");
                     locationManager.generateLocation(1700, 2550, 0, 300);
                     double x = locationManager.getX();
                     double y = locationManager.getY();
@@ -119,15 +134,17 @@ public class Map implements Runnable{
 
                 }
                 else{
-                    locationManager.generateLocation(2550, 3400, 0, 480);
+                    locationManager.generateLocation(2550, 3400, 180, 300);
                     double x = locationManager.getX();
                     double y = locationManager.getY();
                     gameObject = new Boss(x, y, mapLevel);
                     //gameObject.setVisible(false);
                     gameObjects.add(gameObject);
+                    //System.out.println(gameObject.getHeight());
                 }
 
             }
+            System.out.println(count);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -159,8 +176,8 @@ public class Map implements Runnable{
             try {
                 if(gameObjects.get(i).toString().equals("Big Enemy") || gameObjects.get(i).toString().equals("Small Enemy") || gameObjects.get(i).toString().equals("Boss")){
                     Enemy enemy = ((Enemy) gameObjects.get(i));
-                    if(enemy.getXPos() < 850 && enemy.getYPos() < 480)
-                        enemy.setVisible(true);
+                    /*if(enemy.getXPos() < 800 && enemy.getYPos() < 480)
+                        enemy.setVisible(true);*/
                     if(enemy.getHealth() <= 0 || enemy.getXPos() <= 0 || enemy.getYPos() < 0){
                         //gameObjects.get(i).disappearAnimation();
                         gameObjects.remove(i);
@@ -172,12 +189,22 @@ public class Map implements Runnable{
 
             }
         }
-        if(deadCount == totalCountOfEnemies && totalCountOfEnemies == 20)
-            level1Completed = true;
-        else if(deadCount == totalCountOfEnemies && totalCountOfEnemies == 40)
-            level2Completed = true;
-        else if(deadCount == totalCountOfEnemies && totalCountOfEnemies == 60)
-            level3Completed = true;
+        if(deadCount == totalCountOfEnemies) {
+            updateMap();
+        }
+
+        //System.out.println(deadCount);
+    }
+    public void updateMap(){
+        setBackgroundImage(backgroundImages[mapLevel]);
+        if(mapLevel == 1){
+            mapLevel = 2;
+        }
+        else if(mapLevel == 2){
+            mapLevel = 3;
+        }
+        deadCount = 0;
+        setEnemies();
     }
     public void createContent(){
         try{
@@ -196,6 +223,7 @@ public class Map implements Runnable{
                 public void handle(long currentNanoTime)
                 {
                     try{
+                        //update();
                         // calculate time since last update.
                         double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
                         lastNanoTime = currentNanoTime;
@@ -230,7 +258,7 @@ public class Map implements Runnable{
                             }
 
                         }
-                        update();
+
                     }catch (Exception e){
                         e.printStackTrace();
                     }

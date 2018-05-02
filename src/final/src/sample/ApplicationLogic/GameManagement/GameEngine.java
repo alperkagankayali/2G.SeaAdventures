@@ -82,10 +82,12 @@ public class GameEngine implements Runnable{
         boolean flag1 = false;
         boolean flag2 = false;
         ArrayList<Enemy> enemies = Map.getMap().getVisibleEnemies();
-        System.out.println(enemies.size());
+        //System.out.println(enemies.size());
         for(int i = 0; i < enemies.size(); i++){
             try{
+                //System.out.println(enemies.get(i).getWidth());
                 flag = cm.checkGameObjectCollision(enemies.get(i), Map.getMap().getSubmarine());
+                //System.out.println(flag);
                 if(flag){
                     Map.getMap().getSubmarine().healthDecrease(1);
                     enemies.get(i).decreaseHealth(1);
